@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+    content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>路径与子路径</title>
+  <style>
+    *{
+      padding: 0;margin: 0;
+    }
+  </style>
+</head>
+<body>
+<canvas id='canvas' width='800' height='600'></canvas>
+<script>
+  var canvas = document.getElementById('canvas'),
+    context = canvas.getContext('2d')
+
+  // context.beginPath()
+  // context.rect(10, 10, 100, 100)
+  // context.stroke()
+  //
+  // // context.beginPath()
+  // context.rect(50, 50, 100, 100)
+  // context.stroke()
+
+  function drawTwoArcs () {
+    context.beginPath()
+
+    context.arc(300, 190, 150, 0, Math.PI * 2, true)
+
+    context.arc(300, 190, 100, 0, Math.PI * 2, false)
+
+    context.fill()
+
+    context.beginPath()
+    // context.shadowColor =  undefined
+    // context.shadowOffsetX = 0
+    // context.shadowOffsetY = 0
+
+    context.stroke()
+  }
+
+  function draw () {
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height)
+
+    context.save()
+
+    context.shadowColor = 'rgba(0, 0, 0, 0.8)'
+    context.shadowOffsetX = 12
+    context.shadowOffsetY = 12
+    context.shadowBlur = 15
+
+    drawTwoArcs()
+    context.restore()
+  }
+
+  context.fillStyle = 'rgba(100, 140, 230, 0.5)'
+  context.strokeStyle = context.fillStyle
+
+  draw()
+</script>
+</body>
+</html>

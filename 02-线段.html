@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+    content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>线段</title>
+  <style>
+    *{
+      padding: 0;margin: 0;
+    }
+  </style>
+</head>
+<body>
+<canvas id='canvas' width='800' height='600'></canvas>
+<script>
+  var canvas = document.getElementById('canvas'),
+      context = canvas.getContext('2d')
+  function drawDrid (context, color, stepx, stepy) {
+    context.strokeStyle = color
+    context.lineWidth = 0.5
+
+    for (var i = stepx + 0.5; i < context.canvas.width; i+=stepx) {
+      context.beginPath()
+      context.moveTo(i, 0)
+      context.lineTo(i, context.canvas.height)
+      context.stroke()
+    }
+    for (var i = stepy + 0.5; i < context.canvas.height; i+=stepy) {
+      context.beginPath()
+      context.moveTo(0, i)
+      context.lineTo(context.canvas.width, i)
+      context.stroke()
+    }
+  }
+  // drawDrid(context, 'lightgray', 10, 10)
+
+  function drawDashedLine(context, x1, y1, x2, y2, dashLength) {
+    dashLength = dashLength === undefined ? 5 : dashLength
+
+    var deltaX = x2 - x1
+    var deltaY = y2 - y1
+    var numBashes = Math.floor(Math.sqrt(deltaX * deltaX + deltaY * deltaY) / dashLength)
+
+    for (var i = 0; i < numBashes; ++i) {
+      context[i % 2 === 0 ? 'moveTo' : 'lineTo'](x1 + (deltaX / numBashes) * i, y1 + (deltaY / numBashes) * i)
+    }
+
+    context.stroke()
+  }
+
+  context.lineWidth = 3
+  context.strokeStyle = 'blue'
+  drawDashedLine(context, 20, 20, context.canvas.width - 20, 20)
+</script>
+</body>
+</html>

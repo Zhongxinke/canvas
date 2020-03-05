@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+    content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>多边形的绘制</title>
+  <style>
+    *{
+      padding: 0;margin: 0;
+    }
+  </style>
+</head>
+<body>
+<canvas id='canvas' width='800' height='600'></canvas>
+<script>
+  var canvas = document.getElementById('canvas'),
+      context = canvas.getContext('2d')
+
+  function drawPolygon (x, y, r, polygon, fillStyle) {
+    if (polygon < 3) {
+      console.warn('至少要3边')
+      return false
+    }
+    x = x || canvas.width / 2
+    y = y || canvas.height/  2
+    r = r || 50
+    polygon = polygon || 6
+    var unit = Math.PI * 2 / polygon
+    context.beginPath()
+    context.moveTo(Math.sin(0) * r + x, -Math.cos(0) * r + y)
+    for (var i = unit; i < Math.PI * 2; i += unit) {
+      context.lineTo(Math.sin(i) * r + x, -Math.cos(i) * r + y)
+    }
+    context.closePath()
+    context.stroke()
+    if (fillStyle) {
+      context.fillStyle = fillStyle
+      context.fill()
+    }
+  }
+  drawPolygon(canvas.width / 2, canvas.height / 2, 50, 3, 'rgba(0, 255, 0, 0.5)')
+  // drawPolygon(canvas.width / 2, canvas.height / 2, 50, 5, 'rgba(0, 255, 0, 0.5)')
+  // drawPolygon(canvas.width / 2, canvas.height / 2, 100, 6, 'rgba(0, 255, 255, 0.5)')
+  // drawPolygon(canvas.width / 2, canvas.height / 2, 150, 7, 'rgba(0, 225, 255, 0.5)')
+  // drawPolygon(canvas.width / 2, canvas.height / 2, 200, 8, 'rgba(0, 225, 225, 0.5)')
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+    content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>渐变色与图案</title>
+  <style>
+    *{
+      padding: 0;margin: 0;
+    }
+  </style>
+</head>
+<body>
+<canvas id='canvas' width='800' height='600'></canvas>
+<script>
+  var canvas = document.getElementById('canvas'),
+      context = canvas.getContext('2d'),
+      lineargradient = context.createLinearGradient(0, 0, canvas.width / 2, canvas.height / 2),
+      radialGradient = context.createRadialGradient(canvas.width / 2, canvas.height, 10, canvas.width / 2, 0, 100)
+
+  // lineargradient.addColorStop(0, 'blue')
+  // lineargradient.addColorStop(0.25, 'white')
+  // lineargradient.addColorStop(0.5, 'purple')
+  // lineargradient.addColorStop(0.75, 'red')
+  // lineargradient.addColorStop(1, 'yellow')
+  // //
+  // context.fillStyle = lineargradient
+  // context.fillRect(0, 0, canvas.width / 2 - 10, canvas.height)
+
+  radialGradient.addColorStop(0, 'blue')
+  radialGradient.addColorStop(0.25, 'white')
+  radialGradient.addColorStop(0.5, 'purple')
+  radialGradient.addColorStop(0.75, 'red')
+  radialGradient.addColorStop(1, 'yellow')
+
+  context.fillStyle = radialGradient
+  context.fillRect(0, 0, canvas.width, canvas.height)
+
+</script>
+</body>
+</html>

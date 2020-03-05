@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+    content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>十字线段</title>
+  <style>
+    *{
+      padding: 0;margin: 0;
+    }
+    canvas{
+      margin: 20px 0 0 30px;
+    }
+  </style>
+</head>
+<body>
+<canvas id='canvas' width='800' height='600'></canvas>
+<script>
+  var canvas = document.getElementById('canvas'),
+    context = canvas.getContext('2d')
+
+  var info = canvas.getBoundingClientRect()
+  console.log(info)
+  function drawLine (x, y) {
+    context.beginPath()
+    context.moveTo(x, 0)
+    context.lineTo(x, canvas.height)
+    context.moveTo(0, y)
+    context.lineTo(canvas.width, y)
+    context.stroke()
+  }
+
+  canvas.addEventListener('mousemove', function (e) {
+    e.preventDefault()
+    context.clearRect(0, 0, canvas.width, canvas.height)
+    drawLine(e.clientX - info.x, e.clientY - info.y)
+  }, false)
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+    content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>路径与子路径</title>
+  <style>
+    *{
+      padding: 0;margin: 0;
+    }
+  </style>
+</head>
+<body>
+<canvas id='canvas' width='800' height='600'></canvas>
+<script>
+  var canvas = document.getElementById('canvas'),
+    context = canvas.getContext('2d')
+
+  context.fillStyle = 'rgba(0, 255, 0, 0.5)'
+  context.beginPath()
+  context.rect(30, 30, canvas.width / 2, canvas.height / 2)
+  context.arc(60, 70, 20, 0, Math.PI * 2, true)
+
+  context.moveTo(150, 70)
+  context.lineTo(110, 120)
+  context.lineTo(200, 120)
+  context.closePath()
+
+  context.fill()
+</script>
+</body>
+</html>

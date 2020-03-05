@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>练习-时钟</title>
+  <style>
+    *{
+      padding: 0;margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id='canvas'></canvas>
+  <script>
+    var canvas = document.getElementById('canvas')
+    var ctx = canvas.getContext('2d')
+
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+    var W = window.innerWidth
+    var H = window.innerHeight
+    var NUMBERALS = 12
+    var ANGLE = Math.PI / 6
+    var RADIUS = H / 4
+    ctx.font = '20pt Arial'
+    function drwaCircle () {
+      ctx.beginPath()
+      ctx.arc(W / 2, H / 2,  RADIUS, 0, Math.PI * 2, true)
+      ctx.stroke()
+    }
+
+    function drawCenter () {
+      ctx.beginPath()
+      ctx.arc(W / 2, H / 2, 5, 0, Math.PI * 2 ,true)
+      ctx.fill()
+    }
+
+    function drawNumberals () {
+      for (var i = 1; i <= NUMBERALS; i++) {
+        var x = Math.sin( i * ANGLE ) * (RADIUS + 20) + W / 2
+        var y = -Math.cos( i * ANGLE ) * (RADIUS + 20) + H / 2
+        var numberalsWidht = ctx.measureText(i).width
+        ctx.fillText(i, x - numberalsWidht / 2, y + 10)
+      }
+    }
+
+    function drawScale () {
+      ctx.moveTo(W / 2, H / 2)
+      ctx.lineTo(W / 2 + RADIUS, H / 2 + RADIUS)
+      ctx.stroke()
+      // for (var i = 0; i < 360; i++) {
+      //
+      // }
+    }
+    drwaCircle()
+    drawCenter()
+    drawNumberals()
+    drawScale()
+  </script>
+</body>
+</html>
